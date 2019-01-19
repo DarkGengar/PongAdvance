@@ -1,0 +1,7 @@
+bld
+app
+lib
+*.a
+*.o
+*.xcf
+gfx.h

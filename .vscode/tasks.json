@@ -1,0 +1,77 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new"
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "--no-builtin-rules"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ]
+        },
+
+        {
+            "label": "run vba",
+            "type": "shell",
+            "command": "VisualBoyAdvance",
+            "args": [
+                "--throttle=100", "--filter-super-eagle", "--agb-print", "app/${workspaceFolderBasename}.gba"
+            ]
+        },
+
+        {
+            "label": "run mgba",
+            "type": "shell",
+            "command": "mgba-qt",
+            "args": [
+                "-2", "-b ~/Documnents/GbaProgramming/gba_bios_file/bios.gba", "app/${workspaceFolderBasename}.gba"
+            ]
+        },
+
+        {
+            "label": "debug_vsc",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "--no-builtin-rules", "bDEBUG=1"
+            ]
+        },
+
+        {
+            "label": "clean and build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "--no-builtin-rules",
+                "clean",
+                "build"
+            ]
+        },
+
+        {
+            "label": "build and run",
+            "dependsOn": ["build", "run"]
+        }
+    ]
+}
